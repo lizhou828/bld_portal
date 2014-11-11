@@ -1,0 +1,66 @@
+#{extends 'bld.html'/}
+#{stylesheet src:"user.css"/}
+<div class="goods">
+    <div class="user_out">
+        <div class="user_title">用户中心&nbsp;/&nbsp;User Center</div>
+    </div>
+
+    <!--左侧单开始-->
+    <div class="user_left">
+
+        <!--菜单开始-->
+        <div class="user_menu">
+            <div class="u_m_title">用户中心</div>
+            <ul class="u_m_ul">
+                <li><a href="/Members/welcome"><strong>欢迎页</strong></a></li>
+                <li><a href="/Members/address"><strong>收货地址管理</strong></a></li>
+                <li><a href="/Orders/myOrder"><strong>我的订单</strong></a></li>
+                <li><a href="/Members/rePasswordUI"><strong>修改密码</strong></a></li>
+            </ul>
+        </div>
+        <!--菜单结束-->
+
+    </div>
+    <!--左侧单结束-->
+
+    <!--右侧开始-->
+    <div class="user_right">
+        <div class="user_my">
+
+            <!--欢迎信息开始-->
+            <div class="my_4">收货地址管理&nbsp;/&nbsp; Management</div>
+            <!--欢迎信息结束-->
+
+            <!--最新订单开始-->
+            <div class="my_ziliao">
+                <table width="801" border="0">
+                    #{list list,as : "model"}
+                        <tr>
+                            <td width="13" height="33">&nbsp;</td>
+                            <td width="662">
+                                <span>${model.address}</span> &nbsp;&nbsp;&nbsp;
+                                <strong>${model.name}</strong>（收）&nbsp;&nbsp;&nbsp;
+                                <strong>${model.mobileNumber}</strong>&nbsp;&nbsp;&nbsp;
+                                <strong>${model.phoneNumber}</strong>
+                            </td>
+                            <td width="90">
+                                <a href="/Addresses/delete?id=${model.id}">删除</a>
+                            </td>
+                        </tr>
+                    #{/list}
+                    <tr>
+                        <td height="32">&nbsp;</td>
+                        <td>
+                            <input type="button" value="添加新收货地址" onclick="window.location.href='/Addresses/addUI'"/>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <!--最新订单结束-->
+        </div>
+    </div>
+    <!--右侧开始-->
+
+    <div class="clear"></div>
+</div>

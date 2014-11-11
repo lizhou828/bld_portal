@@ -1,0 +1,89 @@
+#{extends 'bld.html'/}
+#{set title:'365 Mall首页'/}
+
+<div class="goods">
+<!--生活服务开始-->
+<div class="service">
+<div class="ser_left">
+    <div class="lef_1">
+        <div class="lef_1_title">
+            <strong>家政服务</strong>
+        </div>
+        <div class="lef_1_link">
+            <div class="lef_link_1">
+                <ul>
+                #{list jzfu,as:'jz'}
+                    <li>#{a @show(jz.id)}${jz.title.length() > 8 ? jz.title[0..8]+".." : jz.title }#{/a}</li>
+                </ul>
+                #{/list}
+                <div class="clea"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lef_2">
+        <div class="lef_2_title">
+            <strong>鲜花服务</strong>
+        </div>
+        <div class="lef_2_link">
+            <div class="lef_link_2">
+                <ul>
+                #{list xhfu,as:'xh'}
+                    <li>#{a @show(xh.id)}${xh.title.length() > 8 ? xh.title[0..8]+".." : xh.title}#{/a}</li>
+                </ul>
+                #{/list}
+                <div class="clea"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lef_3">
+        <div class="lef_3_title">
+            <strong>驾校服务</strong>
+        </div>
+        <div class="lef_3_link">
+            <div class="lef_link_3">
+                <ul>
+                #{list jxfu,as:'jx'}
+                    <li>#{a @show(jx.id)}${jx.title.length() > 8 ? jx.title[0..8]+".." : jx.title  }#{/a}</li>
+                #{/list}
+                </ul>
+                <div class="clea"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lef_4">
+        <div class="lef_4_title">
+            <strong>旅游服务</strong>
+        </div>
+        <div class="lef_4_link">
+            <div class="lef_link_4">
+                <ul>
+                #{list lyfu,as:'ly'}
+                    <li>#{a @show(ly.id)}${ly.title.length  > 8 ? ly.title[0..8]+".." : ly.title}#{/a}</li>
+                #{/list}
+                </ul>
+                <div class="clea"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="ser_right">
+        <div class="dianhua">
+            <div class="dian_title">旅游服务</div>
+            <div class="dian_dian">
+                <div id="div_tc_searchbox"></div><script src="http://union.17u.cn/Scripts/jquery.v1.7.min.js" type="text/javascript"></script><script id="searchJs" src="http://union.17u.cn/Scripts/ui/superSearch.js?v=0.1531202219583122&container=div_tc_searchbox&prj=hotel,airplane,scenic,holiday&where=top&source=20460331&width=358&height=250&bgColor=FFFFFF&borderColor=FFFFFF&btnColor=448800&city=长沙&target=_blank&putType=0" type="text/javascript"></script>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!--生活服务结束-->
+<div class="clear"></div>
+</div>

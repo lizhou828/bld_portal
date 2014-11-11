@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>#{get 'title' /}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/public/stylesheets/public-index.css" rel="stylesheet" type="text/css" />
+    <link href="/public/stylesheets/goods.css" rel="stylesheet" type="text/css" />
+    #{get 'moreStyles' /}
+    <script type="text/javascript" src="/public/javascripts/pptBox.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/public/javascripts/menu_1.js"></script>
+    <script type="text/javascript" src="/public/javascripts/menu_2.js"></script>
+    <script type="text/javascript" src="/public/javascripts/slide.js"></script>
+   <link href="/public/stylesheets/slide.css" rel="stylesheet" type="text/css">
+    #{get 'moreScripts' /}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#cartFromButton").click(function(){
+                var count = document.getElementById("cartCount")
+                if(count.innerHTML == "0件"){
+                    alert("购物车没有商品");
+                }else{
+                    document.getElementById("cartFrom").submit();
+                }
+            });
+        });
+        function clears(){
+            document.getElementsByClassName("s_text")[0].setAttribute("value","");
+        }
+
+        //菜单浮动效果
+        function showMenu(){
+            var flag = '${flag}';
+            if(flag != null && flag != ''&& flag != 'undefined'){
+                return
+            }
+            document.getElementById("menu_other").style.display='block';
+        }
+
+        function hideMenu(){
+            var flag = '${flag}';
+            if(flag != null && flag != '' && flag != 'undefined'){
+                return
+            }
+            document.getElementById("menu_other").style.display='none';
+        }
+//        function isShowMenu(){
+//            alert("1");
+//            if(document.getElementById("menu_other").style.display == 'none'){
+//                showMenu();
+//            }
+//            if(document.getElementById("menu_other").style.display == 'block'){
+//                hideMenu();
+//            }
+//        }
+    </script>
+</head>
+<body >
+<!--顶部开始-->
+    <div class="top">
+        <div class="banner">
+        <!--顶部链接开始-->
+        <div class="link_outside">
+            <div class="city">
+                长沙<a href="#">[切换城市]</a>
+            </div>
+            <div class="join">
+                #{if userName == null || "".equals(userName)}
+                    <a href="/Members/logonUI?url=${java.net.URLEncoder.encode(request.url, "utf-8")}">登陆</a>|
+                    <a href="/Members/registerUI">注册</a>|
+                #{/if}
+                #{else }
+                    欢迎您:<a href="/Members/welcome">${userName}</a>|
+                <a href="/Members/logout">退出</a>
+                #{/else}
+                <a href="#">加盟舒天</a>
+            </div>
+        </div>
+        <!--顶部链接结束-->
+
+        <!--搜索及登陆开始-->
+        <div class="search_outside">
+            <!--搜索开始-->
+            <div class="search">
+                <div class="search_1">
+                    <form action="/application/search" method="post">
+                    <table class="search_2" width="582" border="0">
+                        <tr>
+                            <td width="489" height="31">
+                                <input class="s_text" type="text" onfocus="clears()" name="key" value="${key}" />
+                            </td>
+                            <td width="83">
+                                <input type="submit" class="s_btn"  value=""/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="20" class="search_3">热门搜索：
+                                <a href="#">哇哈哈</a>
+                                <a href="#">海飞丝</a>
+                                <a href="#">金龙鱼调和油</a>
+                                <a href="#">手机</a>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+            <!--搜索结束-->
+
+            *{<!--登陆开始-->
+            <div class="login">
+                <input class="zhuce" type="button" />
+                <input class="denglu" type="button" />
+            </div>
+            <!--登陆结束-->}*
+        </div>
+        <!--搜索及登陆结束-->
+
+        <!--导航开始-->
+        <div class="nav">
+            <div class="nav_outside">
+                <!--浮动菜单控制区域开始!-->
+                <input id="menu_hide" class="menu_hide" type="button" onmouseover="showMenu()" />
+                <!--浮动菜单控制区域结束!-->
+
+                <ul class="nav_1">
+                    <li>
+                        <a href="/index">首页</a>
+                    </li>
+                    <li>
+                        <div class="hot">
+                            <a href="/miaoshas/index">一折秒杀</a>
+                        </div>
+                    </li>
+                    <li>
+                    #{a @Services.index()}生活管家#{/a}
+                    </li>
+                    <li><a class="a1" href="/application/point">积分兑换</a></li>
+                </ul>
+
+                <!--隐藏菜单开始-->
+                <div id="menu_other" class="menu_other" style="display: none;" onmouseover="showMenu()" onmouseout="hideMenu()" >
+                    <div id="sidebar">
+                        <!--一级分类开始-->
+                    #{list items:products,as:'product'}
+                        <div class="sidelist">
+	                 <span>
+                            <h3 class="">#{a @Goodses.list(product.id)}${product.name}#{/a}</h3>
+                     </span>
+
+                            <div style="display: none;" class="i-list">
+                                <ul>
+                                %{
+                                    def SubList = subProductsMap.get(product.id);
+                                        if (SubList != null){
+                                            SubList.each {pros->
+                                    }%
+                                    <li>
+                                        #{a @Goodses.list(pros.id)}${pros.name}#{/a}
+                                    </li>
+                                %{
+                                             }
+                                        }
+                                    }%
+                                </ul>
+                                <div class="cle"></div>
+                            </div>
+
+                        </div>
+                    #{/list}
+                        <!--一级分类结束-->
+
+                    </div>
+                </div>
+                <!--隐藏菜单结束-->
+
+            </div>
+
+                <!--购物车开始-->
+                <div class="buy">
+                    <form action="/Orders/cartList" method="post" id="cartFrom">
+                        <table width="215" height="41" border="0">
+                            <tr valign="middle">
+                                <td width="30" height="37">&nbsp;</td>
+                                <td width="58">购物车：</td>
+                                <td width="43" align="center" style="color:#577813" ><b id="cartCount">${carCount}件</b></td>
+                                <td width="66">
+                                    <input type="button" class="buy_btn_index" id="cartFromButton"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <!--购物车结束-->
+        </div>
+    </div>
+    <!--导航结束-->
+    </div>
+<div class="page_center">
+#{doLayout /}
+
+<!--第二屏结束-->
+
+
+    <!--页面底部开始-->
+    <div class="mall_end">
+        <div class="end_top">
+            <div class="se_1">帮助中心</div>
+            <div class="se_2">配送方式</div>
+            <div class="se_3">客户服务</div>
+            <div class="se_4">会员中心</div>
+            <div class="se_5">招商专区</div>
+            <div class="se_6">公司介绍</div>
+        </div>
+    </div>
+
+    <div class="mall_end2">
+        <div class="end_bottom">
+            <div class="link_1">
+            #{list bzzx,as:'bz'}
+                <p>#{a @Services.help(bz.id)}${bz.title}#{/a}</p>
+            #{/list}
+            </div>
+            <div class="link_1">
+            #{list psfs,as:'ps'}
+                <p>#{a @Services.help(bz.id)}${ps.title}#{/a}</p>
+            #{/list}
+            </div>
+            <div class="link_1">
+            #{list khfw,as:'kh'}
+                <p>#{a @Services.help(kh.id)}${kh.title}#{/a}</p>
+            #{/list}
+            </div>
+            <div class="link_1">
+            #{list hyzx,as:'hy'}
+                <p>#{a @Services.help(hy.id)}${hy.title}#{/a}</p>
+            #{/list}
+            </div>
+            <div class="link_1">
+            #{list zszq,as:'zs'}
+                <p>#{a @Services.help(zs.id)}${zs.title}#{/a}</p>
+            #{/list}
+            </div>
+            <div class="link_1">
+            #{list gsjs,as:'gs'}
+                <p>#{a @Services.help(gs.id)}${gs.title}#{/a}</p>
+            #{/list}
+            </div>
+        </div>
+    </div>
+    <!--页面底部结束-->
+
+    <!--copyright-->
+    <div class="copyright">版权所有 湖南舒天网络科技发展有限公司 Copyright(C)2004-2013 湘ICP备11007592号</div>
+    <!--copyright-->
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+#{extends 'bld.html'/}
+#{set title:'365 Mall首页'/}
+<!--页面中间开始-->
+<div class="page_center">
+    <!--第一屏开始-->
+    <div class="goods">
+
+        <div class="goods_outside">
+
+            <!--当前位置开始-->
+            <div class="position">
+                <a href="/index">首页</a>&nbsp;>&nbsp;
+                #{list items:models.ArticleType.map,as:'map'}
+                    #{if map.key == article.type}
+                    ${map.value}
+                    #{/if}
+                #{/list}
+            </div>
+            <!--页当前位置结束-->
+
+            <!--商品购买信息开始-->
+            <div class="buys">
+
+                <div class="index_bottom">
+                    <div class="note_text">
+
+                        <div class="bor_title">
+                            ${article.title}
+                        </div>
+                        <div class="bor_wenzi">
+                            　　<p>${article.text.raw()}</p><br /><br />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <!--商品描述开始-->
+                <div class="spms"></div>
+                <div class="clear"></div>
+                <!--商品描述结束-->
+            </div>
+            <!--商品购买信息结束-->
+        </div>
+    </div>
+    <!--第一屏结束-->
+
+    <!------------------------------------------------------->
+
+</div>
+

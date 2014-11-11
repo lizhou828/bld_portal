@@ -1,0 +1,160 @@
+#{extends 'bld.html'/}
+#{script src:"jquery.cityselect.js"/}
+<script type="text/javascript" src="/public/javascripts/jquery.cityselect.js"></script>
+<script type="text/javascript">
+    function changeNumber(object){
+        var button = document.getElementById("b_shuliang");
+        //alert(button.value);
+        if(object.className == "b_jia"){
+            button.value = parseInt(button.value) + 1;
+        }else if(object.className == "b_jian"){
+            if(button.value > 1){
+                button.value = button.value - 1;
+            }
+        }
+    }
+    function addBuyCart(element){
+        var id = element.name;
+        var pro = document.getElementById("province").value;
+        if(pro == ""){
+            alert("请选择配送地区");
+            return;
+        }
+        var listAction = #{jsAction @addCart(':goodsId', ':province') /}
+        pro = encodeURI(encodeURI(pro));
+        $.post(listAction({goodsId: id, province: pro}), function(data) {
+            alert("已加入购物车");
+            $("#cartCount").text(data + "件");
+        });
+    }
+
+    function changeImage(image){
+        var maxImage = document.getElementById("maxImage");
+        var str = image.src;
+        var newStr = str.replace("_58X58","_350X350");
+        maxImage.src = newStr;
+    }
+    $(function(){
+        $("#city_1").citySelect({
+            nodata:"none",
+            required:false
+        });
+    });
+</script>
+<div class="goods">
+
+    <div class="goods_outside">
+
+        <!--当前位置开始-->
+        <div class="position">
+            <a href="/Goodses/list?productId=${goods.product.id}">${goods.product.name}</a>&nbsp;>&nbsp;${goods.name}
+        </div>
+        <!--页当前位置结束-->
+
+        <!--商品购买信息开始-->
+        <div class="buys">
+            <div class="b_left">
+                <div class="b_pic">
+                    <img id="maxImage" src="/upload/${models.ImageSize.getImage(goods.getImagePaths()?.get(0),models.ImageSize.XIANGXI_DATU)}" width="350" height="350" />
+                </div>
+                <div class="b_pic2">
+                    <input type="button" class="p_l" />
+                    <div class="pic_pic">
+                        #{list goods.getImagePaths(),as : "str"}
+                            <img  src="/upload/${models.ImageSize.getImage(str,models.ImageSize.XIANGXI_SUOLUETU)}" width="58" height="58" onmouseover="changeImage(this)"/>
+                        #{/list}
+                    </div>
+                    <input type="button" class="p_r" />
+                </div>
+            </div>
+            <div class="b_right">
+                <div class="b_title">
+                    <p>${goods.name}</p>
+                </div>
+                <div class="b_title2">
+                    <p><strong></strong></p>
+                </div>
+                <div class="b_jiage">
+                    <ul>
+                        <li>商品编号：${goods.goodsNo}</li>
+                        <li>市场价：<span class="yuanjia">${goods.marketPrice}</span></li>
+                        <li>365商城价：<span class="xianjia">￥${goods.goodsPrice}</span></li>
+                        <li>
+                            <div class="goods_peisong">配送至：</div>
+                            <div id="city_1">
+                                <div class="good_select">
+                                    <select class="prov" id="province">
+                                    </select>
+                                </div>
+                                <div class="good_select">
+                                    <select class="city" disabled="disabled">
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="b_youhuo">有货，</span>
+                            <span>下单后立即发货</span>
+                        </li>
+                        <li class="b_fuwu">服务：由365商城发货并提供售后服务。</li>
+                        <li class="b_gmsl">
+                            <span>购买数量：</span>
+                            <input class="b_jian" type="button" onclick="changeNumber(this)"/>
+                            <input class="b_shuliang" type="text" value="1" id="b_shuliang"/>
+                            <input  class="b_jia"type="button" onclick="changeNumber(this)"/>
+                        </li>
+                        <li class="buy_btn">
+                            <input type="button" class="buycar" onclick="addBuyCart(this)" name="${goods.id}" id="jiabuy"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <!--商品描述开始-->
+            <div class="spms">
+                <div class="spms_l">
+                    <div class="paihang_title">人气商品&nbsp;/&nbsp;Hot </div>
+                    <div class="paihang_xx">
+
+                        #{list hots,as : 'hot'}
+                            <div class="xx_goods">
+                                <div class="g_1"></div>
+                                <div class="g_2">
+                                    <a href="/Goodses/show?id=${hot.id}">
+                                        <img src="/upload/${models.ImageSize.getImage(hot.getImagePaths()?.get(0),models.ImageSize.XIANGXI_HOTS)}" width="100" height="100" />
+                                    </a>
+                                </div>
+                                <div class="g_3">
+                                    <p class="g_3_2">${hot.name}</p>
+                                    <p class="g_3_1">￥${hot.goodsPrice}</p>
+                                </div>
+                            </div>
+                        #{/list}
+
+                    </div>
+                </div>
+                <div class="spms_r">
+                    <div class="miaoshu_title">商品介绍&nbsp;/&nbsp;Description </div>
+                    <div class="miaoshu_sx">
+                        <div class="sx1">
+                            <p>商品名称：${goods.name}</p>
+                            <p>上架时间：${goods.createDate.format("yyyy-MM-dd")}</p>
+                        </div>
+                        <div class="sx1">
+                            <p>商品编号：${goods.goodsNo}</p>
+                            <p>商品产地：${goods.goodsArea}</p>
+                        </div>
+                        <div class="sx1">
+                            <p>品牌：${goods.brand?.name}</p>
+                            <p>商品条形码:${goods.code}</p>
+                        </div>
+                    </div>
+                    <div class="xx_pic">
+                        ${goods.goodsDes.raw()}
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <!--商品描述结束-->
+        </div>
+        <!--商品购买信息结束-->
+    </div>
+</div>

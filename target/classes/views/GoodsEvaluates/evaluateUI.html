@@ -1,0 +1,44 @@
+#{extends 'bld1.html'/}
+#{stylesheet src:"buycar.css"/}
+<script type="text/javascript">
+    function check(){
+        var comment = document.getElementsByName("comment")[0].value;
+        if(comment == ""){
+            alert("评价内容不能为空")
+            return false;
+        }else if(comment.length > 256){
+            alert("评价内容太长");
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+<div class="pingjia">
+    <div class="pj_title">
+        <span>其它卖家很需要您的评价哦！</span>
+    </div>
+    <div class="pj_pj">
+        <form action="/GoodsEvaluates/evaluate" method="post" onsubmit="return check()">
+            <input type="hidden" name="goodsId" value="${goods.id}">
+            <input type="hidden" name="orderId" value="${orderId}">
+            <table width="524" height="102" border="0">
+                <tr>
+                    <td width="102">
+                        <div class="pj_pic">
+                            <img src="../images/b_pic.jpg" width="100" height="100" />
+                        </div>
+                    </td>
+                    <td width="28">&nbsp;</td>
+                    <td width="482">
+                        <textarea name="comment" class="pj_text"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="pj_title">
+                <input class="pj_btn" type="submit" value="确认评价"/>
+
+            </div>
+        </form>
+    </div>
+</div>

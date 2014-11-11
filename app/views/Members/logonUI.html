@@ -1,0 +1,108 @@
+#{extends 'bld1.html'/}
+#{stylesheet src:"buycar.css" /}
+<script type="text/javascript">
+    function check(){
+        var userName = document.getElementById("userName")
+        if(userName.value == ""){
+            alert("用户名不能为空");
+            return;
+        }
+        var password = document.getElementById("password")
+        if(password.value == ""){
+            alert("密码不能为空");
+            return;
+        }
+        document.getElementById("logon").submit();
+    }
+
+</script>
+<div class="login">
+        <div class="login_1">
+            <div class="lo_left"></div>
+            <div class="lo_right">
+                <form action="/Members/logon" method="post" id="logon">
+                    <input type="hidden" name="url" value="${params.get("url")}">
+                <table width="558" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="50" height="55">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td width="301">&nbsp;</td>
+                        <td width="90">&nbsp;</td>
+                        <td width="54">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="19">&nbsp;</td>
+                        <td colspan="2" align="left"><strong>用户名：</strong></td>
+                        <td>
+                            <input type="text" id="userName" class="lo_user" name="userName" value="${userName}"/>
+                        </td>
+                        <td><a href="/Members/registerUI">新用户注册</a></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="18">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td class="l_1">${userError}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="20">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td width="26" align="left"><strong>密</strong></td>
+                        <td width="37" align="left"><strong>码：</strong></td>
+                        <td>
+                            <input type="password" id="password" class="lo_pass" name="password" value="${password}"/>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="19">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td class="l_1">${passwordError}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="18">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="38">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td valign="middle"><input type="checkbox" name="checkbox" id="checkbox" />
+                            自动登录&nbsp;&nbsp;
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="32">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td>
+                            <input class="login_btn" type="button"  onclick="check()"/></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="50">&nbsp;</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>

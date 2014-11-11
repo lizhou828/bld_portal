@@ -1,0 +1,130 @@
+#{extends 'bld1.html'/}
+#{stylesheet src:"buycar.css" /}
+    <!--步奏开始-->
+    <div class="c_buzou3"></div>
+    <!--步奏结束-->
+
+    <!--购物列表开始-->
+    <div class="c_buy_step3">
+        <table width="990" border="0">
+            <tr>
+                <td height="22" align="right" valign="middle">&nbsp;</td>
+                <td align="left" valign="middle">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="283" height="63" align="right" valign="middle">
+                    <img src="/public/images/gou.gif" />
+                </td>
+                <td width="630" align="left" valign="middle">
+                    <span class="a_1">恭喜您!</span>&nbsp;
+                    <span>订单：</span><a href="#" class="a_2">${order.orderNum}</a>
+                    <span>，提交成功，付款后我们将尽快发货。</span>
+                </td>
+                <td width="63">&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="35" >&nbsp;</td>
+                <td>
+                    <span class="a_5">&nbsp;&nbsp;提示：本次订单应付金额：</span>
+                    <span class="a_4">${order.totalPrice}</span>
+                    <span class="a_5">元，如24小时未支付，订单将自动关闭！</span>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <!--购物列表结束-->
+
+    <!--付款开始-->
+    <div class="step3_pay">
+        <div class="pay_1">订单支付</div>
+        <div class="pay_2">
+            <div class="pay_pt">1、平台支付方式：</div>
+            <br clear="all" />
+            <div class="pay_pt1">
+                <div class="pt1_1">
+                    <table width="180" border="0">
+                        <tr>
+                            <td width="29" height="41">
+                                <input type="radio" name="radio" id="radio" value="radio" />
+                            </td>
+                            <td width="141">
+                                <img src="/public/images/alipay.gif" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="22">&nbsp;</td>
+                            <td align="center">&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="pt1_1">
+                    <table width="180" border="0">
+                        <tr>
+                            <td width="29" height="41">
+                                <input type="radio" name="radio" id="radio" value="radio" />
+                            </td>
+                            <td width="141">
+                                <img src="/public/images/cft.gif" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="22">&nbsp;</td>
+                            <td align="center">即将开通</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="pt1_1">
+                    <table width="180" border="0">
+                        <tr>
+                            <td width="29" height="41">
+                                <input type="radio" name="radio" id="radio" value="radio" />
+                            </td>
+                            <td width="141">
+                                <img src="/public/images/lkl.gif" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="22">&nbsp;</td>
+                            <td align="center">即将开通</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br clear="all" />
+
+            </div>
+        </div>
+
+        <div class="pay_2">
+            <div class="pay_pt">2、网银支付方式：</div>
+            <br clear="all" />
+            <div class="pay_pt1">
+                <div class="pt1_1">
+                    <table width="180" border="0">
+                        <tr>
+                            <td width="29" height="41"><input type="radio" name="radio" id="radio2" value="radio" /></td>
+                            <td width="141"><img src="/public/images/ccb.gif" /></td>
+                        </tr>
+                        <tr>
+                            <td height="22">&nbsp;</td>
+                            <td align="center">&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                <br clear="all" />
+            </div>
+        </div>
+
+        <div class="ljzf">
+            <input type="button" class="paying" />
+        </div>
+        <br clear="all" />
+
+    </div>
+    <!--付款结束-->
+    <div class="clear"></div>
+

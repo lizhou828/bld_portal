@@ -1,0 +1,63 @@
+#{extends 'bld.html'/}
+#{set title:'365 Mall首页'/}
+<!--页面中间开始-->
+<div class="page_center">
+    <!--第一屏开始-->
+    <div class="goods">
+
+        <div class="goods_outside">
+
+            <!--当前位置开始-->
+            <div class="position">
+                #{list items:models.ArticleType.map,as:'map'}
+                  #{if map.key == article.type}
+                      ${map.value}
+                  #{/if}
+                #{/list}
+                &nbsp;>&nbsp;${article.title}</div>
+            <!--页当前位置结束-->
+
+            <!--商品购买信息开始-->
+            <div class="buys">
+
+                <div class="index_bottom">
+                    <div class="bot_left">
+                        <div class="bot_menu">
+                            <div class="bm_title">
+                                #{list items:models.ArticleType.map,as:'map'}
+                                     #{if map.key == article.type}
+                                           ${map.value}
+                                     #{/if}
+                                #{/list}
+                            </div>
+                            <ul>
+                                #{list articles,as:'ar'}
+                                <li>#{a @show(ar.id)}${ar.title}#{/a}</li>
+                                #{/list}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bot_right">
+
+                        <div class="bor_title">
+                            ${article.title}
+                        </div>
+                        <div class="bor_wenzi">
+                            <strong>${article.text.raw()}</strong><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <!--商品描述开始-->
+                <div class="spms"></div>
+                <div class="clear"></div>
+                <!--商品描述结束-->
+            </div>
+            <!--商品购买信息结束-->
+        </div>
+    </div>
+    <!--第一屏结束-->
+
+    <!------------------------------------------------------->
+    <!--第二屏开始-->
+</div>

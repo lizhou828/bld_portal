@@ -1,0 +1,74 @@
+#{extends 'bld.html'/}
+#{stylesheet src:"user.css" /}
+<div class="goods">
+    <div class="user_out">
+        <div class="user_title">用户中心&nbsp;/&nbsp;User Center</div>
+    </div>
+    <!--左侧单开始-->
+    <div class="user_left">
+        <!--菜单开始-->
+        <div class="user_menu">
+            <div class="u_m_title">用户中心</div>
+            <ul class="u_m_ul">
+                <li><a href="/Members/welcome"><strong>欢迎页</strong></a></li>
+                <li><a href="/Members/address"><strong>收货地址管理</strong></a></li>
+                <li><a href="/Orders/myOrder"><strong>我的订单</strong></a></li>
+                <li><a href="/Members/rePasswordUI"><strong>修改密码</strong></a></li>
+            </ul>
+        </div>
+        <!--菜单结束-->
+    </div>
+    <!--左侧单结束-->
+
+    <!--右侧开始-->
+    <div class="user_right">
+        <div class="user_my">
+
+            <!--欢迎信息开始-->
+            <div class="my_1">
+                <div class="my_photo">
+                    <img src="/public/images/my_photo.gif" width="95" height="95" />
+                </div>
+                <div class="my_welcome">
+                    <p>你好，<strong class="www_1">${member.userName}</strong>，欢迎登录356Mall商城！</p>
+                    <p class="www_2">您的等级是：<strong class="www_1">普通会员</strong></p>
+                </div>
+            </div>
+            <!--欢迎信息结束-->
+
+            <!--最新订单开始-->
+            <div class="my_2">
+                <table width="901" border="0" cellpadding="0" cellspacing="0">
+                    <tr class="my2_title">
+                        <td height="35" colspan="7">最新订单&nbsp;/&nbsp;New Order：</td>
+                    </tr>
+
+                    <tr class="my2_1">
+                        <td width="145" height="30">订单号</td>
+                        <td width="146">订单人姓名</td>
+                        <td width="133">订购日期</td>
+                        <td width="92">数量</td>
+                        <td width="139">实际款</td>
+                        <td width="121">状态</td>
+                        <td width="125">操作</td>
+                    </tr>
+                    #{if order != null}
+                        <tr class="my2_3">
+                            <td width="145" height="30">${order.orderNum}</td>
+                            <td width="146">${order.shipName}</td>
+                            <td width="133">${order.createDate.format("yyyy-MM-dd")}</td>
+                            <td width="92">${order.count}</td>
+                            <td width="139">${order.totalPrice}</td>
+                            <td width="121" class="my2_3_1">${models.OrderStatus.map.get(order.status)}</td>
+                            <td width="125">&nbsp;</td>
+                        </tr>
+                    #{/if}
+                </table>
+            </div>
+            <!--最新订单结束-->
+        </div>
+    </div>
+    <!--右侧开始-->
+
+    <div class="clear"></div>
+</div>

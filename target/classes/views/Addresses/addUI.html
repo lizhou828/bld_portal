@@ -1,0 +1,111 @@
+#{extends 'bld.html'/}
+#{stylesheet src:"user.css"/}
+<script type="text/javascript">
+    function check(){
+        var name = $("#name").val();
+        if(name.length == 0){
+            alert("收货人姓名不能为空");
+            return false;
+        }
+        var mobileNum = $("#mobileNum").val();
+        var phoneNum = $("#phoneNum").val();
+        if(mobileNum.length == 0 && phoneNum.length == 0){
+            alert("手机与座机必填一个");
+            return false;
+        }
+        var address = $("#address").val();
+        if(address.length == 0){
+            alert("详细地址不能为空");
+            return false;
+        }
+        return true;
+    }
+
+
+</script>
+<div class="goods">
+    <div class="user_out">
+        <div class="user_title">用户中心&nbsp;/&nbsp;User Center</div>
+    </div>
+
+    <!--左侧单开始-->
+    <div class="user_left">
+
+        <!--菜单开始-->
+        <div class="user_menu">
+            <div class="u_m_title">用户中心</div>
+            <ul class="u_m_ul">
+                <li><a href="/Members/welcome"><strong>欢迎页</strong></a></li>
+                <li><a href="/Members/address"><strong>收货地址管理</strong></a></li>
+                <li><a href="/Orders/myOrder"><strong>我的订单</strong></a></li>
+                <li><a href="/Members/rePasswordUI"><strong>修改密码</strong></a></li>
+            </ul>
+        </div>
+        <!--菜单结束-->
+
+    </div>
+    <!--左侧单结束-->
+
+    <!--右侧开始-->
+    <div class="user_right">
+        <div class="user_my">
+
+            <!--欢迎信息开始-->
+            <div class="my_4">修改收货&nbsp;/&nbsp;Edit address</div>
+            <!--欢迎信息结束-->
+
+            <!--最新订单开始-->
+            <div class="my_ziliao">
+                <form action="/Addresses/add" method="post" onsubmit="return check()">
+                <table width="801" border="0">
+                    <tbody><tr>
+                        <td width="-1" height="33">&nbsp;</td>
+                        <td width="81"><strong>收货人姓名：</strong></td>
+                        <td><input type="text" name="name" id="name"><span class="z_2">
+                *&nbsp;&nbsp;请填写收货姓名</span></td>
+                    </tr>
+                    <tr>
+                        <td height="33">&nbsp;</td>
+                        <td><strong>手机：</strong></td>
+                        <td><input type="text" name="mobileNum" id="mobileNum">
+                            <span class="z_2">*&nbsp;&nbsp;手机或座机请至少填一项</span></td>
+                    </tr>
+                    <tr>
+                        <td height="32">&nbsp;</td>
+                        <td><strong>座机号码：</strong></td>
+                        <td><input type="text" name="phoneNum" id="phoneNum">
+                            <span class="z_2">*&nbsp;&nbsp;手机或座机请至少填一项</span></td>
+                    </tr>
+                    <tr>
+                        <td height="32">&nbsp;</td>
+                        <td><strong>邮编：</strong></td>
+                        <td><input type="text" name="zipCode" id="zipCode"></td>
+                    </tr>
+                    <tr>
+                        <td height="31">&nbsp;</td>
+                        <td><strong>详细地址：</strong></td>
+                        <td class="z_1"><textarea rows="5" cols="45" id="address" name="address"></textarea>
+                            <span class="z_2">*</span><span class="z_2">&nbsp;&nbsp;请填写收货详细地址</span></td>
+                    </tr>
+                    <tr>
+                        <td height="32">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="32">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>
+                            <input type="submit" value="添加">
+                        </td>
+                    </tr>
+                    </tbody></table>
+                </form>
+            </div>
+            <!--最新订单结束-->
+        </div>
+    </div>
+    <!--右侧开始-->
+
+    <div class="clear"></div>
+</div>

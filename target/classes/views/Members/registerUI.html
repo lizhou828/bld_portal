@@ -1,0 +1,142 @@
+#{extends 'bld1.html'/}
+#{stylesheet src:"buycar.css" /}
+<script type="text/javascript">
+    function check(){
+        var checkboxElement = document.getElementById("agreement");
+        if(!checkboxElement.checked){
+           alert("请勾选 《365Mall用户注册协议》");
+        }else{
+            document.getElementById("register").submit();
+        }
+    }
+</script>
+<div class="login">
+        <div class="login_1">
+            <div class="zhu_right">
+                <form action="/Members/register" method="post" id="register">
+                <table width="558" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="43" height="36">&nbsp;</td>
+                        <td width="110">&nbsp;</td>
+                        <td width="297">&nbsp;</td>
+                        <td width="85">&nbsp;</td>
+                        <td width="23">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="19" align="right" class="z_1">*</td>
+                        <td align="left"><strong>&nbsp;请输入用户名：</strong></td>
+                        <td>
+                            <input type="text" class="lo_user" name="userName" value="${userName}"/>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="18">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="l_1">${userError}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="20">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="right" class="z_1">*</td>
+                        <td align="left"><strong>&nbsp;请设置密码：</strong></td>
+                        <td>
+                            <input type="password" class="lo_pass" name="password" value="${password}"/>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="19">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="l_1">${passwordError}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="18">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="38" align="right" class="z_1">*</td>
+                        <td align="left"><strong>&nbsp;请确认密码：</strong></td>
+                        <td valign="middle"><input type="password" class="lo_pass" name="password1" value="${password1}"/></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="18">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="l_1">${password1Error}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="17">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="38" align="right"><span class="z_1">*</span></td>
+                        <td><strong>&nbsp;邮箱地址：</strong></td>
+                        <td><input type="text" class="lo_email" name="email" value="${email}"/></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="17">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="l_1">${emailError}</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="17">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="18">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td><input type="checkbox" name="checkbox" id="agreement" checked="checked"/>
+                            我已阅读并同意
+                            <a href="#">《365Mall用户注册协议》</a>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="53">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>
+                            <input class="zhuce_btn" type="button" onclick="check()"/></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="19">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>

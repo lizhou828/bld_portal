@@ -1,0 +1,71 @@
+#{extends 'bld.html'/}
+#{stylesheet src:"user.css"/}
+<div class="goods">
+    <div class="user_out">
+        <div class="user_title">用户中心&nbsp;/&nbsp;User Center</div>
+    </div>
+    <!--左侧单开始-->
+    <div class="user_left">
+        <!--菜单开始-->
+        <div class="user_menu">
+            <div class="u_m_title">用户中心</div>
+            <ul class="u_m_ul">
+                <li><a href="/Members/welcome"><strong>欢迎页</strong></a></li>
+                <li><a href="/Members/address"><strong>收货地址管理</strong></a></li>
+                <li><a href="/Orders/myOrder"><strong>我的订单</strong></a></li>
+                <li><a href="/Members/rePasswordUI"><strong>修改密码</strong></a></li>
+            </ul>
+        </div>
+        <!--菜单结束-->
+
+    </div>
+    <!--左侧单结束-->
+
+    <!--右侧开始-->
+    <div class="user_right">
+        <div class="user_my">
+
+            <!--欢迎信息开始-->
+            <div class="my_4">我的订单&nbsp;/&nbsp;My Order:</div>
+            <!--欢迎信息结束-->
+
+            <!--最新订单开始-->
+            <div class="my_2">
+                <table width="901" border="0" cellpadding="0" cellspacing="0">
+                    <tr class="my2_title">
+                        <td height="35" colspan="7">订单列表</td>
+                    </tr>
+                    <tr class="my2_1">
+                        <td width="145" height="30">订单号</td>
+                        <td width="146">订单人姓名</td>
+                        <td width="133">订购日期</td>
+                        <td width="92">数量</td>
+                        <td width="139">实际款</td>
+                        <td width="121">状态</td>
+                        <td width="125">操作</td>
+                    </tr>
+                     #{list page.data,as : 'order'}
+                         <tr class="my2_3">
+                             <td width="145" height="30">${order.orderNum}</td>
+                             <td width="146">${order.shipName}</td>
+                             <td width="133">${order.createDate.format("yyyy-MM-dd")}</td>
+                             <td width="92">${order.count}</td>
+                             <td width="139">${order.totalPrice}</td>
+                             <td width="121" class="my2_3_1">${models.OrderStatus.map.get(order.status)}</td>
+                             <td width="125">
+                                 <a href="/OrderItems/list?orderId=${order.id}">操作</a>
+                             </td>
+                         </tr>
+                     #{/list}
+                </table>
+            </div>
+            <div style="text-align: center">
+                #{page page:page, url:"/Orders/myOrder"/}
+            </div>
+            <!--最新订单结束-->
+        </div>
+    </div>
+    <!--右侧开始-->
+
+    <div class="clear"></div>
+</div>

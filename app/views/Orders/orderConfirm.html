@@ -1,0 +1,137 @@
+#{extends 'bld1.html'/}
+#{stylesheet src:"buycar.css" /}
+#{script src:'jquery-1.3.2.min.js'/}
+<script type="text/javascript">
+   function commit(){
+       var address = $('input:radio[name="addressId"]:checked').val();
+       if(address == null){
+           alert("请选择一个收货地址");
+       }
+       else{
+           document.getElementById("addressFrom").submit();
+       }
+   }
+</script>
+
+    <!--步奏开始-->
+    <div class="c_buzou2"></div>
+    <!--步奏结束-->
+
+    <!--购物列表开始-->
+    <div class="c_buy2">
+        <form action="/Orders/orderCommit" method="post" id="addressFrom">
+            <input type="hidden" name="freight" value="${freight}">
+        <table width="990" border="0" cellpadding="0" cellspacing="0">
+            <tr class="buy2_1">
+                <td width="119">确认收货地址</td>
+                <td width="679">&nbsp;</td>
+                <td width="106">&nbsp;</td>
+                <td width="86">&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="42" align="right">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            #{list list,as : "address"}
+                <tr>
+                    <td height="21" align="right">
+                        <input type="radio" name="addressId"  value="${address.id}" />
+                    </td>
+                    <td class="add_1">
+                        <span>${address.address}</span>&nbsp;
+                        <span><strong></strong></span>&nbsp;
+                        <span><strong></strong></span>
+                    </td>
+                    <td align="center">&nbsp;</td>
+                </tr>
+            #{/list}
+            <tr>
+                <td align="right">&nbsp;</td>
+                <td class="add_1">
+                    <input type="button" id="button" value="使用新地址" onclick="window.location.href='/Members/address'"/>
+                </td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="45">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        </form>
+
+    </div>
+
+    <div class="c_buy3">
+        <table width="990" border="0" cellpadding="0" cellspacing="0">
+            <tr class="buy2_1">
+                <td colspan="7">购买商品清单</td>
+            </tr>
+            <tr>
+                <td width="27" height="41">&nbsp;</td>
+                <td width="92">&nbsp;</td>
+                <td width="587">&nbsp;</td>
+                <td colspan="3" align="right">
+                    <a href="#">返回购物车修改</a>
+                </td>
+                <td width="24">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="25" class="b_3">&nbsp;</td>
+                <td  class="b_2" align="center">商品名称</td>
+                <td width="100"  class="b_2">价格</td>
+                <td width="79"  class="b_2">数量</td>
+                <td width="81"  class="b_2">库存</td>
+                <td>&nbsp;</td>
+            </tr>
+            #{list cartMap,as : "its"}
+                <tr>
+                    <td>&nbsp;</td>
+                    <td height="80" align="center" valign="middle" class="b_4">
+                        <img src="/upload/${models.ImageSize.getImage(its.key.getImagePaths()?.get(0),models.ImageSize.ORDER_SUOLUETU)}" width="60" height="60" />
+                    </td>
+                    <td class="b_4"><a href="/Goodses/show?id=${its.key.id}">${its.key.name}</a></td>
+                    <td align="center" class="b_4"><strong>￥${its.key.goodsPrice}</strong></td>
+                    <td align="center" class="b_4">${its.value}</td>
+                    <td align="center" class="b_4">有货</td>
+                    <td>&nbsp;</td>
+                </tr>
+            #{/list}
+
+            <tr>
+                <td height="42">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="right">总数量：</td>
+                <td align="left">${cartMap.size()}件</td>
+                <td align="right">总金额：</td>
+                <td align="left">￥${countPrice}</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="38">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="right">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="right">运费：</td>
+                <td align="left"><strong>+</strong><span>￥${freight}</span></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="b_5">
+                <td height="50">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="right">应付总额(含运费):</td>
+                <td class="b_6">￥${countPrice + freight}</td>
+                <td colspan="3" align="center">
+                    <input type="button" class="tijiao" onclick="commit()"/>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <!--购物列表结束-->
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+#{get 'moreStyles' /}
+#{get 'moreScripts' /}
+</head>
+<body>
+<!--顶部开始-->
+<div class="buy_top">
+    <div class="link_outside">
+        <div class="city">
+            长沙<a href="#">[切换城市]</a>
+        </div>
+        <div class="join">
+        #{if userName == null || "".equals(userName)}
+            <a href="/Members/logonUI?url=${java.net.URLEncoder.encode(request.url, "utf-8")}">登陆</a>|
+            <a href="/Members/registerUI">注册</a>|
+        #{/if}
+        #{else }
+            欢迎您:<a href="/Members/welcome">${userName}</a>|
+            <a href="/Members/logout">退出</a>
+        #{/else}
+            <a href="#">加盟舒天</a>
+        </div>
+    </div>
+</div>
+<!--顶部结束-->
+
+<!--页面中间开始-->
+<div class="buy_center">
+
+    <!--banner开始-->
+    <div class="c_banner">
+        <div class="b_logo">
+            <div class="logo_img">
+                <a href="/application/index"><img src="/public/images/login_logo.gif" /></a>
+            </div>
+        </div>
+    </div>
+    #{doLayout /}
+    <div class="c_copy">
+        <p>版权所有 湖南舒天网络科技发展有限公司 Copyright(C)2004-2013 湘ICP备11007592号</p>
+    </div>
+</div>
+
+</body>
+</html>
